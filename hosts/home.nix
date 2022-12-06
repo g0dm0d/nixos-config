@@ -10,9 +10,9 @@
 
   home.packages = with pkgs; [
     # Shell
-    # zsh
+    #zsh
 
-    #Media
+    # Media
     vlc
     feh
     spotify
@@ -20,33 +20,30 @@
     #Internet
     firefox
 
-    #Cli apps
+    # Cli apps
     btop
-    # zathura
+    #zathura
     neovim
     neofetch
     nettools
     ranger
 
-    #Work
+    # Work
     vscode
     onlyoffice-bin
 
-    #Social
+    # Social
     discord
     tdesktop
 
     #Terminal emulators
-    kitty
+    #kitty
     alacritty
 
-    #Tweaks
+    # Tweaks
     gnome.gnome-tweaks
 
-    #Other
-    jetbrains-mono
-
-    #Program language
+    # Program language
     go
     python310Full
   ];

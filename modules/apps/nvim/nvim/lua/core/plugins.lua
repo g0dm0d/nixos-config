@@ -2,6 +2,9 @@ local astro_plugins = {
   -- Plugin manager
   ["wbthomason/packer.nvim"] = {},
 
+  ["marko-cerovac/material.nvim"] = {},
+
+
   -- Optimiser
   ["lewis6991/impatient.nvim"] = {},
 

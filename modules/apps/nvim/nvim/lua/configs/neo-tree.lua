@@ -47,6 +47,9 @@ neotree.setup(astronvim.user_plugin_opts("plugins.neo-tree", {
     follow_current_file = true,
     hijack_netrw_behavior = "open_current",
     use_libuv_file_watcher = true,
+    filtered_items = {
+      hide_dotfiles = false,
+    },
   },
   event_handlers = {
     { event = "neo_tree_buffer_enter", handler = function(_) vim.opt_local.signcolumn = "auto" end },
