@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    (import ../waybar/waybar.nix) ++
-    (import ../wofi/wofi.nix);
+  imports = [
+    ../waybar/waybar.nix
+    ../wofi/wofi.nix
+  ];
 
   home.packages = with pkgs; [
     grim
