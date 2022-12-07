@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-	zsh
+	  zsh
     oh-my-zsh
     zsh-syntax-highlighting
     zsh-autosuggestions

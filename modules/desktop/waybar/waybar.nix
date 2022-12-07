@@ -2,14 +2,11 @@
 
 {
 	home.packages = with pkgs; [
-	  neovim
-	  cargo
-	  rustc
-	  gcc
+	  waybar
 	];
     
-	home.file.".config/nvim" = {
-		source = ./nvim;
+	home.file.".config/waybar" = {
+		source = ./waybar;
 		recursive = true;
 	};
 }

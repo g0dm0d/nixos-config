@@ -3,20 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, username, ... }:
-# let
-#   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-#   hyprland = (import flake-compat {
-#     src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-#   }).defaultNix;
-# in
-#let
-#  user = "godmod";
-#in
+
 {
   imports =
     [
       ./hardware-configuration.nix
-      # hyprland.nixosModules.default
     ];
 
   # Bootloader.
@@ -54,17 +45,16 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
+  
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  environment.variables.NIXOS_OZONE_WL = "1";
+
   # Enable the Hyprland Env
-  #services.xserver.displayManager.sddm.enable = true;
-  #programs.hyprland = {
-  #  enable = true;
-  #  package = hyprland.packages.${pkgs.system}.default;
-  #};
+  services.xserver.displayManager.sddm.enable = true;
+
 
 
   # Configure keymap in X11

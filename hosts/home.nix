@@ -1,12 +1,14 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, username, ... }:
 
 {
   imports = 
     (import ../modules/apps) ++
+    (import ../modules/desktop) ++
     (import ../modules/shell);
 
-  home.username = "godmod";
-  home.homeDirectory = "/home/godmod";
+  home.username = "${username}";
+  home.homeDirectory = "/home/${username}";
+  home.stateVersion = "22.11";
 
   home.packages = with pkgs; [
     # Shell
@@ -47,8 +49,6 @@
     go
     python310Full
   ];
-
-  home.stateVersion = "22.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

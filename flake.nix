@@ -7,23 +7,28 @@
       url = github:nix-community/home-manager/release-22.11;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland }: 
   let
     username = "godmod";
     system = "x86_x64-linux";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      user = "godmod";
+      user = "${username}";
     };
     lib = nixpkgs.lib;
-  in {
+  in
+  {
     nixosConfigurations = (
       import ./hosts {
         inherit system lib;
-        inherit inputs nixpkgs home-manager username;
+        inherit inputs nixpkgs home-manager username hyprland;
       }
     );
   };
