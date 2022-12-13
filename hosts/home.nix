@@ -1,7 +1,7 @@
 { config, lib, pkgs, username, ... }:
 
 {
-  imports = 
+  imports =
     (import ../modules/apps) ++
     (import ../modules/desktop) ++
     (import ../modules/shell);
@@ -18,6 +18,7 @@
     vlc
     feh
     spotify
+    obs-studio
 
     #Internet
     firefox
@@ -44,6 +45,7 @@
 
     # Tweaks
     gnome.gnome-tweaks
+    brightnessctl
 
     # Program language
     go

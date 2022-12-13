@@ -9,4 +9,8 @@
     source = ./wofi;
     recursive = true;
   };
+  home.file.".config/wofi/wofi-wifi-menu.sh" = {
+    source = ./wofi/wofi-wifi-menu.sh;
+    executable = true;
+  };
 }
