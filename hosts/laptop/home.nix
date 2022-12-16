@@ -2,9 +2,9 @@
 
 {
   imports =
-    (import ../modules/apps) ++
-    (import ../modules/desktop) ++
-    (import ../modules/shell);
+    (import ../../modules/apps) ++
+    (import ../../modules/desktop) ++
+    (import ../../modules/shell);
 
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
@@ -46,10 +46,16 @@
     # Tweaks
     gnome.gnome-tweaks
     brightnessctl
+    xdg-desktop-portal-gnome
 
-    # Program language
+    # Programming
     go
     python310Full
+    dbeaver
+    postgresql
+    insomnia
+    docker
+    docker-compose
   ];
 
   # Let Home Manager install and manage itself.

@@ -7,14 +7,14 @@
       modules = [ 
         hyprland.nixosModules.default
         { programs.hyprland.enable = true; }
-        ./configuration.nix
+        ./laptop/configuration.nix
 
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit username; };
           home-manager.users.${username} = {
-            imports = [(import ./home.nix)];
+            imports = [(import ./laptop/home.nix)];
           };
         }
       ];

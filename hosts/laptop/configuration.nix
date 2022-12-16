@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, username, ... }:
 
 {
@@ -55,16 +51,12 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = true;
+  # Enable Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  environment.variables.NIXOS_OZONE_WL = "1";
-
-  # Enable the Hyprland Env
   services.xserver.displayManager.sddm.enable = true;
 
-
+  environment.variables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   services.xserver = {
@@ -80,7 +72,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  # security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -95,7 +86,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Add fonts in system
@@ -120,23 +111,21 @@
   nixpkgs.config.allowUnfree = true;
 
   # Fix polkit
-
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wants = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
+  # systemd = {
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     description = "polkit-gnome-authentication-agent-1";
+  #     wants = [ "graphical-session.target" ];
+  #     wantedBy = [ "graphical-session.target" ];
+  #     after = [ "graphical-session.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -153,8 +142,22 @@
     unzip
     unrar
 
+    docker
+    docker-compose
     grub2
   ];
+
+  # Docker
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
+
+  # Evolution with ms addons
+  # programs.evolution = {
+  #   enable = true;
+  #   plugins = [ pkgs.evolution-ews ];
+  # };
+
 
   system.stateVersion = "22.11"; # Did you read the comment?
 
