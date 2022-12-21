@@ -145,6 +145,11 @@
     docker
     docker-compose
     grub2
+
+    gnumake
+    xorg.libXft
+    xorg.libXinerama
+    xorg.libX11
   ];
 
   # Docker
