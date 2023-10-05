@@ -52,11 +52,13 @@
   services.xserver.enable = true;
 
   # Enable Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.i3.enable = true;
+  services.xserver.windowManager.i3.enable = true;
 
-  environment.variables.NIXOS_OZONE_WL = "1";
+  # environment.variables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   services.xserver = {
@@ -80,7 +82,19 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput = {
+    enable = true;
+
+    # disabling mouse acceleration
+    mouse = {
+      accelProfile = "flat";
+    };
+
+    # disabling touchpad acceleration
+    # touchpad = {
+    #   accelProfile = "flat";
+    # };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
@@ -90,42 +104,32 @@
   };
 
   # Add fonts in system
+  fonts.fontconfig.enable = true;
   fonts.fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     liberation_ttf
-    fira-code
-    fira-code-symbols
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
+
+    fira-code
     jetbrains-mono
+    nerdfonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
+
+    # for latex
+    libertine
 
     nerdfonts
+
     unifont
     symbola
   ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Fix polkit
-  # systemd = {
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wants = [ "graphical-session.target" ];
-  #     wantedBy = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -137,25 +141,50 @@
 
     #Text editor
     vim
+    xclip
 
     #Archivs
     unzip
+    zip
     unrar
 
+    # tools
     docker
     docker-compose
+    rustc
+    cargo
+    rustup
+    rustfmt
+    rust-analyzer
+    go
+    gopls
+    gcc
+    nodejs
+
+    texlive.combined.scheme-medium
+
     grub2
 
     gnumake
+    pkg-config
     xorg.libXft
     xorg.libXinerama
     xorg.libX11
+    gtk3
+    gtk3-x11
   ];
 
   # Docker
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+
+  boot.supportedFilesystems = [ "ntfs" ];
+
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
+
+  # Android emulator
+  # virtualisation.waydroid.enable = true;
+  # virtualisation.lxd.enable = true;
 
   # Evolution with ms addons
   # programs.evolution = {
@@ -164,7 +193,7 @@
   # };
 
 
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
   # Personal tweaks
   programs.zsh.enable = true;

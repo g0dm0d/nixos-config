@@ -8,36 +8,36 @@
 
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   home.packages = with pkgs; [
-    # Shell
-    #zsh
-
     # Media
     vlc
     feh
     spotify
     obs-studio
+    flameshot
+
+    cinnamon.nemo
 
     #Internet
     firefox
 
     # Cli apps
     btop
-    #zathura
     neovim
     neofetch
     nettools
-    ranger
 
     # Work
     vscode
     onlyoffice-bin
+    obsidian
 
     # Social
     discord
     tdesktop
+    endeavour
 
     #Terminal emulators
     #kitty
@@ -47,26 +47,27 @@
     gnome.gnome-tweaks
     brightnessctl
     xdg-desktop-portal-gnome
+    sassc
+    glib
 
     # Programming
-    go
     python310Full
+    python310Packages.pip
+
     dbeaver
     postgresql
     insomnia
     docker
     docker-compose
+    sqlitebrowser
+    sqlite
+    jetbrains.goland
+    go-migrate
+
+    # Rust
+    cargo-tauri
   ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # Setup theme
-  #gtk = {
-  #  enable = true;
-  #  iconTheme = {
-  #    name = "Papirus-Dark";
-  #    package = pkgs.papirus-icon-theme;
-  #  };
-  #};
 }
