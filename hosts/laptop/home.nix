@@ -17,6 +17,7 @@
     spotify
     obs-studio
     flameshot
+    # davinci-resolve
 
     cinnamon.nemo
 
