@@ -17,8 +17,6 @@
     spotify
     obs-studio
     flameshot
-    # davinci-resolve
-
     cinnamon.nemo
 
     #Internet
@@ -26,7 +24,6 @@
 
     # Cli apps
     btop
-    neovim
     neofetch
     nettools
 
@@ -38,10 +35,8 @@
     # Social
     discord
     tdesktop
-    endeavour
 
     #Terminal emulators
-    #kitty
     alacritty
 
     # Tweaks
@@ -51,22 +46,15 @@
     sassc
     glib
 
-    # Programming
-    python310Full
-    python310Packages.pip
-
+    # Programming stuff
     dbeaver
+    unityhub
     postgresql
     insomnia
-    docker
-    docker-compose
     sqlitebrowser
     sqlite
     jetbrains.goland
     go-migrate
-
-    # Rust
-    cargo-tauri
   ];
 
   # Let Home Manager install and manage itself.

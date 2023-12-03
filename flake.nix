@@ -7,13 +7,9 @@
       url = github:nix-community/home-manager/release-23.05;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland }:
+  outputs = inputs @ { self, nixpkgs, home-manager }:
     let
       username = "godmod";
       system = "x86_x64-linux";
@@ -28,7 +24,7 @@
       nixosConfigurations = (
         import ./hosts {
           inherit system lib;
-          inherit inputs nixpkgs home-manager username hyprland;
+          inherit inputs nixpkgs home-manager username;
         }
       );
     };

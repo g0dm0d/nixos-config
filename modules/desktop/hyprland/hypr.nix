@@ -13,6 +13,7 @@
     wl-clipboard
     wlr-randr
     hyprpaper
+    hyprland
   ];
 
   home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;

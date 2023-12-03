@@ -136,8 +136,6 @@
   environment.systemPackages = with pkgs; [
     #network
     wget
-    git
-    noisetorch
 
     #Text editor
     vim
@@ -151,15 +149,13 @@
     # tools
     docker
     docker-compose
-    rustc
-    cargo
     rustup
-    rustfmt
-    rust-analyzer
     go
     gopls
     gcc
     nodejs
+    python310Full
+    python310Packages.pip
 
     texlive.combined.scheme-medium
 
@@ -185,13 +181,6 @@
   # Android emulator
   # virtualisation.waydroid.enable = true;
   # virtualisation.lxd.enable = true;
-
-  # Evolution with ms addons
-  # programs.evolution = {
-  #   enable = true;
-  #   plugins = [ pkgs.evolution-ews ];
-  # };
-
 
   system.stateVersion = "23.05"; # Did you read the comment?
 
