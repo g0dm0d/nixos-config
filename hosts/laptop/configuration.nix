@@ -48,17 +48,14 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.i3.enable = true;
-  services.xserver.windowManager.i3.enable = true;
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # environment.variables.NIXOS_OZONE_WL = "1";
+  programs.hyprland.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -89,11 +86,6 @@
     mouse = {
       accelProfile = "flat";
     };
-
-    # disabling touchpad acceleration
-    # touchpad = {
-    #   accelProfile = "flat";
-    # };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -105,7 +97,7 @@
 
   # Add fonts in system
   fonts.fontconfig.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -116,8 +108,6 @@
 
     fira-code
     jetbrains-mono
-    nerdfonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
 
     # for latex
     libertine
@@ -131,8 +121,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # TODO: detele
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     #network
     wget
@@ -147,9 +141,11 @@
     unrar
 
     # tools
+    rustup
+    cargo
+    rust-analyzer
     docker
     docker-compose
-    rustup
     go
     gopls
     gcc
@@ -172,19 +168,15 @@
 
   # Docker
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
-
-  boot.supportedFilesystems = [ "ntfs" ];
-
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
 
-  # Android emulator
-  # virtualisation.waydroid.enable = true;
-  # virtualisation.lxd.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
-  system.stateVersion = "23.05"; # Did you read the comment?
+  security.polkit.enable = true;
 
-  # Personal tweaks
+  system.stateVersion = "23.11";
+
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 

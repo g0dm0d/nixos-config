@@ -3,9 +3,9 @@
     "height": 28,
     "layer": "top",
     // Choose the order of the modules
-    "modules-left": ["wlr/workspaces", "tray"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["temperature", "custom/sep", "cpu", "custom/sep", "memory", "custom/sep", "backlight", "custom/sep", "pulseaudio", "custom/sep", "network", "custom/sep", "custom/notification", "custom/sep", "battery"],
+    "modules-right": ["temperature", "custom/sep", "cpu", "custom/sep", "memory", "custom/sep", "backlight", "custom/sep", "pulseaudio", "custom/sep", "network", "custom/sep", "custom/notification", "tray", "custom/sep", "battery"],
 
     "custom/sep": {
 		"format": ""
@@ -26,28 +26,11 @@
 		"on-click-right": "swaync-client -d -sw",
 		"escape": true
 	},
-	"custom/date": {
-		"format": "  {}",
-		"interval": 3600,
-		"exec": "$HOME/.config/waybar/waybar-date.sh"
-	},
-	"wlr/workspaces": {
+	"hyprland/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": true,
 		"on-click": "activate",
 		"format": "{icon}",
-		"persistent_workspaces": {
-			"1": [],
-			"2": [],
-			"3": [],
-			"4": [],
-			"5": [],
-			"6": [],
-			"7": [],
-			"8": [],
-			"9": [],
-			"10": []
-		},
 		"format-icons": {
 			"1": "一",
 			"2": "二",
@@ -112,12 +95,12 @@
         "spacing": 10
     },
 	"clock": {
-		"format": "  {:%H:%M} ",
+		"format": "   {:%H:%M} ",
 		"interval": 60,
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 	},
     "cpu": {
-        "format": "龍 {usage}%",
+        "format": " {usage}%",
         "tooltip": false
     },
     "memory": {
@@ -128,8 +111,7 @@
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 85,
         // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": [" ", "", " "]
+        "format": " {temperatureC}°C",
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -161,7 +143,7 @@
 		"tooltip-format-wifi": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
         "format-linked": "{ifname} (No IP)  ",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "sh ~/.config/wofi/wofi-wifi-menu.sh"
+        // "on-click": "kitty nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -182,18 +164,4 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
 }
-
-

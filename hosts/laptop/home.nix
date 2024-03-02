@@ -8,7 +8,7 @@
 
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
     # Media
@@ -21,6 +21,7 @@
 
     #Internet
     firefox
+    openvpn
 
     # Cli apps
     btop
@@ -35,6 +36,7 @@
     # Social
     discord
     tdesktop
+    vesktop
 
     #Terminal emulators
     alacritty
@@ -54,6 +56,7 @@
     sqlitebrowser
     sqlite
     jetbrains.goland
+    jetbrains.pycharm-community
     go-migrate
   ];
 

@@ -1,3 +1,6 @@
 [submodule "modules/apps/nvim/nvim"]
 	path = modules/apps/nvim/nvim
-	url = https://github.com/g0dm0d/nvim.git
+	url = https://github.com/AstroNvim/AstroNvim
+[submodule "modules/apps/nvim/astronvim_config"]
+	path = modules/apps/nvim/astronvim_config
+	url = https://github.com/g0dm0d/astronvim_config

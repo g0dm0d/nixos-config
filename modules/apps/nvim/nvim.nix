@@ -9,4 +9,9 @@
 		source = ./nvim;
 		recursive = true;
 	};
+
+	home.file.".config/nvim/lua/user" = {
+		source = ./astronvim_config;
+		recursive = true;
+	};
 }
