@@ -17,5 +17,5 @@ jobs:
             auto-optimise-store = true
             experimental-features = nix-command flakes
       - run: |
-        git submodule update --init --recursive
-        nix flake check
+          git submodule update --init --recursive
+          nix flake check
